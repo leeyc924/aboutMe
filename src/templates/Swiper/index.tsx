@@ -25,10 +25,6 @@ const Swiper = ({}: SwiperProps) => {
     setActiveIndex(prev => (prev + 1 > last ? first : prev + 1));
   }, []);
 
-  const handleDetail = useCallback<HistoryProps['handleDetail']>(id => {
-    console.log(id);
-  }, []);
-console.log(activeIndex);
   return (
     <div className="swiper">
       <button onClick={() => handleClick('prev')}>
@@ -37,7 +33,7 @@ console.log(activeIndex);
       </button>
       <div className="swiper__container">
         {historyList.map((history, index) => (
-          <History key={index} id={history.id} handleDetail={handleDetail} isActive={activeIndex === index}>
+          <History key={index} id={history.id} isActive={activeIndex === index}>
             {history}
           </History>
         ))}
