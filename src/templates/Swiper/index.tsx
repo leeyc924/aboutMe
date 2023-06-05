@@ -1,10 +1,9 @@
 'use client';
 
-import History, { HistoryProps } from '@components/History';
+import History from '@components/History';
 import Screenout from '@components/Screenout';
 import { useCallback, useState } from 'react';
 import { BiLeftArrow as LeftIcon, BiRightArrow as RightIcon } from 'react-icons/bi';
-import './index.scss';
 
 const historyList: any[] = [{ id: '1' }, { id: '2' }, { id: '3' }];
 

@@ -1,8 +1,6 @@
 'use client';
 
 import { ReactNode, memo, useCallback, useRef } from 'react';
-import './index.scss';
-import Modal from '@components/Modal';
 
 export interface HistoryProps {
   id: string;
@@ -26,9 +24,6 @@ const History = ({ id, isActive }: HistoryProps) => {
       <div className={`history${isActive ? ' history--active' : ''}`} onClick={() => handleDetail()}>
         카드
       </div>
-      <Modal ref={modalRef} closeModal={handleClose}>
-        {id}
-      </Modal>
     </>
   );
 };

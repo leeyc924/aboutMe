@@ -1,11 +1,17 @@
 'use client'
 
-import './index.scss';
+import { useEffect, useState } from "react";
 
 export interface SkillProps {
 }
 
 const Skill = ({}: SkillProps) => {
+  const [a, setA] = useState();
+  useEffect(() => {
+    return () => {
+      
+    }
+  }, []);
   return (
     <div className='skill'>
       React
@@ -13,4 +19,4 @@ const Skill = ({}: SkillProps) => {
   )
 };
 
-export default Skill;
+export default Skill; 
