@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import '@styles/reset.css';
 import '@styles/globals.css';
 import Gnb from '@components/Gnb';
+import DefaultLayout from '../layouts/DefaultLayout';
 import StyledComponentsRegistry from './registry';
 
 export const metadata: Metadata = {
@@ -14,8 +15,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ko">
       <body data-theme="light">
         <StyledComponentsRegistry>
-          <Gnb />
-          {children}
+          <DefaultLayout>
+            <Gnb />
+            {children}
+          </DefaultLayout>
         </StyledComponentsRegistry>
       </body>
     </html>

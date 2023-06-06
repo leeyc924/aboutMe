@@ -12,7 +12,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noImplicitAny": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
@@ -24,6 +23,7 @@
       "@styles/*": ["./src/styles/*"],
       "@components/*": ["./src/components/*"],
       "@templates/*": ["./src/templates/*"],
+      "@layouts/*": ["./src/layouts/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

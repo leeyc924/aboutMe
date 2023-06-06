@@ -1,7 +1,7 @@
-import Career from "@components/Career";
-import Profile from "@components/Profile";
-import Skill from "@components/Skill";
-import Swiper from "@templates/Swiper";
+import Career from '@components/Career';
+import Profile from '@components/Profile';
+import Skill from '@components/Skill';
+import Swiper from '@templates/Swiper';
 
 export default function Home() {
   return (
@@ -10,8 +10,8 @@ export default function Home() {
         <Career></Career>
         <Profile></Profile>
         <Skill></Skill>
-        <Swiper ></Swiper>
+        <Swiper></Swiper>
       </div>
     </main>
-  )
+  );
 }
