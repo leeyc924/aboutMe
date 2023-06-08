@@ -1,8 +1,6 @@
 'use client';
 
-export interface GnbProps {}
-
-const Gnb = ({}: GnbProps) => {
+const Gnb = () => {
   return (
     <nav>
       <ul>

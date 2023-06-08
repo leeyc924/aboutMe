@@ -1,14 +1,5 @@
-
-export interface CareerProps {
-
-}
-
-const Career = ({}: CareerProps) => {
-  return (
-    <div>
-      경력
-    </div>
-  )
+const Career = () => {
+  return <div>경력</div>;
 };
 
 export default Career;

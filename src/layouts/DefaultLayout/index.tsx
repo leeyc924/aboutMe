@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import styled, { DefaultTheme, ThemeProvider } from 'styled-components';
+import Gnb from '@components/Gnb';
 
 export interface DefaultLayoutProps {
   children: ReactNode;
@@ -32,6 +33,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
     <>
       <ThemeProvider theme={theme[themeType]}>
         <Wrap>
+          <Gnb />
           <Component>{children}</Component>
         </Wrap>
       </ThemeProvider>
@@ -47,7 +49,6 @@ const Wrap = styled.div`
 
 const Component = styled.main`
   max-width: 1280px;
-  height: 100%;
   margin: 0 auto;
 `;
 
