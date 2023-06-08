@@ -7,9 +7,7 @@ import Screenout from '@components/Screenout';
 
 const historyList: any[] = [{ id: '1' }, { id: '2' }, { id: '3' }];
 
-export interface SwiperProps {}
-
-const Swiper = ({}: SwiperProps) => {
+const Swiper = () => {
   const [activeIndex, setActiveIndex] = useState(Math.floor(historyList.length / 2));
 
   const handleClick = useCallback((flag: 'prev' | 'next') => {
