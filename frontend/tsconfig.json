@@ -1,4 +1,5 @@
 {
+  "extends":["@breadlee/tsconfig/nextjs.json"],
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

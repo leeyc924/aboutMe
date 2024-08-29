@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import { Server } from 'socket.io';
 
 @WebSocketGateway({
-  namespace: 'ws',
   cors: {
     origin: '*',
   },
