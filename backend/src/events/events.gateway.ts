@@ -1,24 +1,42 @@
-import { MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer, WsResponse } from '@nestjs/websockets';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Logger } from '@nestjs/common';
+import {
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+  OnGatewayInit,
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+} from '@nestjs/websockets';
 import { Server } from 'socket.io';
 
 @WebSocketGateway({
-  cors: {
-    origin: '*',
-  },
+  cors: '*',
 })
-export class EventsGateway {
-  @WebSocketServer()
-  server: Server;
+export class EventsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+  constructor() {}
 
-  @SubscribeMessage('events')
-  findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-    return from([1, 2, 3]).pipe(map(item => ({ event: 'events', data: item })));
+  @WebSocketServer()
+  server!: Server;
+
+  afterInit() {
+    Logger.log('Initialized');
   }
 
-  @SubscribeMessage('identity')
-  async identity(@MessageBody() data: number): Promise<number> {
+  handleConnection(client: any, ...args: any[]) {
+    const { sockets } = this.server.sockets;
+
+    Logger.log(`Client id: ${client.id} connected`);
+    Logger.debug(`Number of connected clients: ${sockets.size}`);
+  }
+
+  handleDisconnect(client: any) {
+    Logger.log(`Cliend id:${client.id} disconnected`);
+  }
+
+  @SubscribeMessage('ping')
+  handleMessage(client: any, data: any) {
+    Logger.log(`Message received from client id: ${client.id}`);
+    Logger.debug(`Payload: ${JSON.stringify(data)}`);
     return data;
   }
 }
