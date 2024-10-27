@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <style>
+      #chat {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      #messages {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 200px;
+        overflow-y: scroll;
+      }
+      #input {
+        width: 100%;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chat">
+      <h2>Chat Room</h2>
+      <div id="usernameInput">
+        <input id="username" placeholder="Enter your name" autocomplete="off" />
+        <button onclick="joinChat()">Join Chat</button>
+      </div>
+      <div id="messages" style="display: none"></div>
+      <input
+        id="input"
+        placeholder="Type a message..."
+        autocomplete="off"
+        style="display: none"
+      />
+    </div>
+
+    <script>
+      const socket = io('http://localhost:3000/chat');
+      let username = '';
+
+      const messages = document.getElementById('messages');
+      const input = document.getElementById('input');
+      const usernameInput = document.getElementById('username');
+      const usernameDiv = document.getElementById('usernameInput');
+
+      // 채팅방 입장
+      function joinChat() {
+        username = usernameInput.value.trim();
+        if (username) {
+          usernameDiv.style.display = 'none';
+          messages.style.display = 'block';
+          input.style.display = 'block';
+          socket.emit('message', {
+            username,
+            message: `${username} has joined the chat!`,
+          });
+        }
+      }
+
+      // 서버로부터 메시지 수신
+      socket.on('message', (data) => {
+        const { username: user, message } = data;
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${user}: ${message}`;
+        messages.appendChild(messageElement);
+        messages.scrollTop = messages.scrollHeight;
+      });
+
+      // Enter 키를 눌렀을 때 메시지 전송
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && input.value.trim() !== '') {
+          socket.emit('message', { username, message: input.value });
+          input.value = '';
+        }
+      });
+    </script>
+  </body>
+</html>
