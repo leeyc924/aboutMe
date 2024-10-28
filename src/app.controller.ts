@@ -5,6 +5,6 @@ export class AppController {
   @Get()
   @Render('index') // index.hbs를 렌더링
   getChatPage() {
-    return { title: 'title 변경?' };
+    return { title: 'title 변경???' };
   }
 }
